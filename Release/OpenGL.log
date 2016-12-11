@@ -1,0 +1,5 @@
+﻿  Main.cpp
+Main.obj : error LNK2001: unresolved external symbol __imp__glewExperimental
+Main.obj : error LNK2001: unresolved external symbol __imp____glewGenBuffers
+Main.obj : error LNK2001: unresolved external symbol __imp__glewInit@0
+C:\Users\Jonas\documents\visual studio 2015\Projects\OpenGL\Release\OpenGL.exe : fatal error LNK1120: 3 unresolved externals
