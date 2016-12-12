@@ -29,11 +29,6 @@ int main() {
 	glewExperimental = GL_TRUE;
 	glewInit();
 
-	GLuint vertexBuffer;
-	glGenBuffers(1, &vertexBuffer);
-
-	std::cout << ("%u\n", vertexBuffer);
-
 	while (!glfwWindowShouldClose(window)) {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
