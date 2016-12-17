@@ -18,14 +18,14 @@ GLSLProgram::~GLSLProgram() {
 void GLSLProgram::loadShader() {
 	_vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 
-	const char* vertexShaderPtr = loadTexture("Shaders/Shader.vert");
+	const char* vertexShaderPtr = loadProgram("Shaders/Shader.vert");
 
 	glShaderSource(_vertexShaderID, 1, &vertexShaderPtr, NULL);
 	glCompileShader(_vertexShaderID);
 
 	_fragmentShaderID = glCreateShader(GL_VERTEX_SHADER);
 
-	const char* fragmentShaderPtr = loadTexture("Shaders/Shader.vert");
+	const char* fragmentShaderPtr = loadProgram("Shaders/Shader.vert");
 
 	glShaderSource(_fragmentShaderID, 1, &fragmentShaderPtr, NULL);
 	glCompileShader(_fragmentShaderID);
@@ -39,7 +39,7 @@ void GLSLProgram::loadShader() {
 	glLinkProgram(_shaderProgramID);
 }
 
-char* GLSLProgram::loadTexture(const std::string& filePath) {
+char* GLSLProgram::loadProgram(const std::string& filePath) {
 	std::ifstream shaderFile(filePath);
 	if (shaderFile.fail()) {
 		perror(filePath.c_str());

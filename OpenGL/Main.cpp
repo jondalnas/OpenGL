@@ -1,20 +1,37 @@
 #include "Main.h"
 
-#define GLEW_STATIC
-
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 #include <iostream>
 
 Main::Main() {
 }
 
-
 Main::~Main() {
 }
 
 int main() {
+	Main main;
+	main.start();
+
+	glfwTerminate();
+
+	return 0;
+}
+
+void Main::start() {
+	initGL();
+	initProgram();
+
+	Object o = Object();
+	o.init(0, 0);
+	Main::objects.push_back(o);
+}
+
+void Main::initProgram() {
+	_program.loadShader();
+	_program.addAttribute("position");
+}
+
+void Main::initGL() {
 	glfwInit();
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -23,18 +40,24 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow *window = glfwCreateWindow(640, 480, "Game Is Running", nullptr, nullptr);
-	glfwMakeContextCurrent(window);
+	_window = glfwCreateWindow(640, 480, "Game Is Running", nullptr, nullptr);
+	glfwMakeContextCurrent(_window);
 
 	glewExperimental = GL_TRUE;
 	glewInit();
+}
 
-	while (!glfwWindowShouldClose(window)) {
-		glfwSwapBuffers(window);
+void Main::gameLoop() {
+	while (!glfwWindowShouldClose(_window)) {
+		glfwSwapBuffers(_window);
 		glfwPollEvents();
+
+		_program.use();
+
+		for (int i = 0; i < Main::objects.size(); i++) {
+			Object obj = Main::objects[i];
+
+			obj.render();
+		}
 	}
-
-	glfwTerminate();
-
-	return 0;
 }

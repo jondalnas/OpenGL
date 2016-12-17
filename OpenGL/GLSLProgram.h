@@ -1,5 +1,6 @@
 #pragma once
 
+#define GLEW_STATIC
 #include <GL/glew.h>
 
 #include <string>
@@ -21,5 +22,5 @@ private:
 	static GLuint _shaderProgramID;
 	static GLuint _numAttributes;
 	static std::map<std::string, GLuint> attribMap;
-	static char* loadTexture(const std::string& filePath);
+	static char* loadProgram(const std::string& filePath);
 };

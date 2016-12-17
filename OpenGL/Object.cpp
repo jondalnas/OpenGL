@@ -28,12 +28,19 @@ void Object::init(float x, float y) {
 
 	glBindBuffer(GL_ARRAY_BUFFER, _vboID);
 
-	glVertexAttribPointer(GLSLProgram::getAttribLocation("position"), 2, GL_FLOAT, GL_FALSE, 0, 0);
-
 	glEnableVertexAttribArray(GLSLProgram::getAttribLocation("position"));
+
+	glVertexAttribPointer(GLSLProgram::getAttribLocation("position"), 2, GL_FLOAT, GL_FALSE, 0, 0);
 
 }
 
 void Object::render() {
+	glBindBuffer(GL_ARRAY_BUFFER, _vboID);
+	glEnableVertexAttribArray(GLSLProgram::getAttribLocation("position"));
+
+	glVertexAttribPointer(GLSLProgram::getAttribLocation("position"), 2, GL_FLOAT, GL_FALSE, 0, 0);
+
 	glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	glDisableVertexAttribArray(GLSLProgram::getAttribLocation("position"));
 }
