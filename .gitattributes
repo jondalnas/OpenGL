@@ -15,3 +15,7 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+# Force git to only look at .cpp file, so it detects it as C++ repository
+* linguist-vendored
+*.js linguist-vendored=false
